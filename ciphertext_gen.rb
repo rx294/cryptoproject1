@@ -35,6 +35,8 @@ for l in 0...plaintext.length
 end
 
 
+# puts unit_freq_char_position_lists
+
 #generate random key
 key_chars.keys.each do |char|
 	for i in 1..key_chars[char]
@@ -53,6 +55,8 @@ for i in 0...plaintext[random_pick].length
   offset[plaintext[random_pick][i]] = (offset[plaintext[random_pick][i]]+1) % key[plaintext[random_pick][i]].count
   ciphertext.push(key[plaintext[random_pick][i]][offset[plaintext[random_pick][i]]])
 end
+
+puts ciphertext.to_s
 
 # try to decode using unit frequency chars
 right_plaintext_index = -1
@@ -74,6 +78,59 @@ if right_plaintext_index < 0
 else
   puts "random plaintext picked====>", plaintext[random_pick]
   puts "-------------------------------------------"
+  puts right_plaintext_index
   puts "decoded cipher text====>",plaintext[right_plaintext_index]
 end
+
+
+# plaintext = [
+# "brisking",
+# "cottoned",
+# "dextrins",
+# "energize",
+# "expatiations",
+# "finale",
+# "freelancing",
+# "gibbousness",
+# "hope",
+# "jeopardous",
+# "maturates",
+# "meaningless",
+# "nested",
+# "nymphal",
+# "rankly",
+# "sampling",
+# "stovepipes",
+# "swells",
+# "travestied",
+# "violators",
+# ]
+
+# plaintext = plaintext.sort_by {|x| x.length}
+
+
+# puts plaintext.length
+
+# for l in 0...plaintext.length
+#   ['b','j','k','q','x','z'].each do |char|
+#     for i in 0...plaintext[l].length
+#       if plaintext[l][i].eql?(char)
+#         unit_freq_char_position_lists[l] = {} if unit_freq_char_position_lists[l].nil?
+#         unit_freq_char_position_lists[l][char] = [] if unit_freq_char_position_lists[l][char].nil?
+#         unit_freq_char_position_lists[l][char].push(i)
+#       end
+#     end
+#   end
+# end
+
+# puts 
+
+# i=0
+
+# plaintext.each do |p|
+#   puts p, p.length
+#   puts unit_freq_char_position_lists[i]
+#   i=i+1
+# end
+
 
