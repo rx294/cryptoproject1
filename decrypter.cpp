@@ -1,7 +1,13 @@
-// Decrypter.cpp : Defines the entry point for the console application.
-//
+//------------------------------------------------------------------------//
+//------------------------------:Authors:--------------------------------//
+//------------------------------------------------------------------------//
+//------------------------------Adeen Ayub--------------------------------//
+//------------------------------------------------------------------------//
+//------------------------Aphichaya Piyapinansook-------------------------//
+//------------------------------------------------------------------------//
+//------------------------------Rony Xavier--------------------------------//
+//------------------------------------------------------------------------//
 
-#include "stdafx.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -9,6 +15,9 @@
 #include <sstream>
 #include <time.h>
 
+//------------------------------------------------------------------------//
+//----------------------------GLOBAL VARIABLES----------------------------//
+//------------------------------------------------------------------------//
 
 using namespace std;
 
@@ -27,6 +36,10 @@ void PopulatePlaintexts()
 	plaintexts.push_back("dean iller playbooks resource anesthetic credibilities nonplus tzetzes incursions stooged envelopments girdling risibility thrum repeaters catheterizing misbestowed cursing malingerers ensconces lippiest accost superannuate slush opinionated rememberer councils mishandling drivels juryless slashers tangent roistering scathing apprenticing fleabite sault achier quantize registrable nobbler sheaf natantly kashmirs dittoes scanned emissivity iodize dually refunded portliest setbacks eureka needines");
 	plaintexts.push_back("mammate punners octette asylum nonclinically trotters slant collocation cardiology enchants ledge deregulated bottommost capsulate biotechnologies subtended cloddiest training joneses catafalque fieldmice hostels affect shrimper differentiations metacarpus amebas sweeter shiatsu oncoming tubeless menu professing apostatizing moreover eumorphic casked euphemistically programmability campaniles chickpea inactivates crossing defoggers reassures tableland doze reassembled striate precocious noncomba");
 }
+
+//------------------------------------------------------------------------//
+//------------------------------CRYTANALYSIS------------------------------//
+//------------------------------------------------------------------------//
 
 //Generate Character Map for characters with unit frequency
 void Generatemapforunitfrequency()
@@ -50,12 +63,12 @@ void Generatemapforunitfrequency()
 int DecryptCiphertext()
 {
 	for (int l = 0; l < unitCharMapList.size(); l++) {
-		for (auto it = unitCharMapList[l].begin(); it != unitCharMapList[l].end(); ++it) {
+		for (auto key = unitCharMapList[l].begin(); key != unitCharMapList[l].end(); ++key) {
 			vector<int> positions;
 
-			for (int i = 0; i < unitCharMapList[l][it->first].size(); ++i) {
-				if (unitCharMapList[l][it->first][i] <= ciphertext.size())
-					positions.push_back(ciphertext[unitCharMapList[l][it->first][i]]);
+			for (int i = 0; i < unitCharMapList[l][key->first].size(); ++i) {
+				if (unitCharMapList[l][key->first][i] <= ciphertext.size())
+					positions.push_back(ciphertext[unitCharMapList[l][key->first][i]]);
 			}
 
 			if (positions.size() > 1 && equal(positions.begin() + 1, positions.end(), positions.begin())) {
@@ -67,6 +80,11 @@ int DecryptCiphertext()
 	}
 	return -1;
 }
+
+
+//------------------------------------------------------------------------//
+//---------------------------------Main----------------------------------//
+//------------------------------------------------------------------------//
 
 int main()
 {
